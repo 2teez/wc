@@ -20,7 +20,7 @@ fn main() {
         // an empty vector is passed to satisfy the function run.
         lib::run(&vec![], None);
     } else if files.len() == 1
-        && (files[0].clone().contains("-") || files[0].clone().contains("--"))
+        && (files[0].clone().starts_with("-") || files[0].clone().starts_with("--"))
     {
         println!("When you use a flag, give a file also. Usage: wc -b temp.txt");
         std::process::exit(1);
