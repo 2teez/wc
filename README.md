@@ -32,7 +32,7 @@ The following flags are available:
 
     -b | --bytes		Listing bytes count of the file or files
     -c | --chars		Listing character count of the file or files
-    -h | --help			Help
+    -h | --help		Help
 
 
 ##  Inspiration
