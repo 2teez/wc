@@ -17,7 +17,7 @@
      
 The `wc` rust program displays the number of bytes, characters, words, lines count available in the file or files given to it from the standard input. 
 	 
-If no `flag` is provided with no filename. The program drops into the standard input `stdin`. Then you can type in whatever you want, and when this is exited a temporary file `temp.txt` is created for the user. The user can then use `wc` to take several counts utilities that the `wc` provides.
+If no `flag` is provided with no filename, the program drops into the standard input `stdin`. Then you can type in whatever you want, and when this is exited a temporary file `temp.txt` is created for the user. The user can then use `wc` to take several counts utilities that the `wc` provides.
 	 
 If only one file or more given, the progam displays all counts except for `number of characters` which is only avaliable via the flag `-c or --chars`.
 	 
