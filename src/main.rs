@@ -15,7 +15,7 @@ fn main() {
     // -c | --chars // Listing character count of the file or files
     // -h | --help  // Help
 
-    if files.is_empty() == 0 {
+    if files.is_empty() {
         println!("You are now using the your Standard Input.");
         // an empty slice is passed to satisfy the function run.
         lib::run(&[], None);
