@@ -15,12 +15,12 @@ fn main() {
     // -c | --chars // Listing character count of the file or files
     // -h | --help  // Help
 
-    if files.len() == 0 {
+    if files.is_empty() == 0 {
         println!("You are now using the your Standard Input.");
-        // an empty vector is passed to satisfy the function run.
-        lib::run(&vec![], None);
+        // an empty slice is passed to satisfy the function run.
+        lib::run(&[], None);
     } else if files.len() == 1
-        && (files[0].clone().starts_with("-") || files[0].clone().starts_with("--"))
+        && (files[0].clone().starts_with('-') || files[0].clone().starts_with("--"))
     {
         println!("When you use a flag, give a file also. Usage: wc -b temp.txt");
         std::process::exit(1);
