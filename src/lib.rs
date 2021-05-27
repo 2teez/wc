@@ -66,7 +66,7 @@ impl fmt::Display for FileDescriptor {
 }
 
 pub fn run(files: &[String], opt: FileOptions) {
-    if files.len() == 0 {
+    if files.is_empty() {
         let file = OpenOptions::new()
             .write(true)
             .create(true)
