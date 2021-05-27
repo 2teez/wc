@@ -41,5 +41,9 @@ From `wc` utility on *nix OS.
 ##  Caveat
 1. While this rust program might not have been throughly tested like `wc` from the *nix OSes. It makes avaliable `wc` provision on all OS that uses `@rust-lang`.
 	
-2. The flags were "hand-picked" i.e manually parsed, instead of using crate like `clap` or `structopt` and the rest. This is because the flag to be used are very little, why kill an ant with an harmer or why kill at all :)! This may change later without affect the function of the program.
+2. The flags were "hand-picked" i.e manually parsed, instead of using crate like `clap` or `structopt` and the rest. This is because the flag to be used are very little, why kill an ant with an harmer or why kill at all :)! This may change later without affecting the functionality of the program.
      
+##  Not Included
+The number of lines and other counts are displayed when the file or files are used on the `wc` program without any flag. So the flag `-l or line` is not included.
+The total sum of all the counts are also not included just to make this `wc` different.
+These are trival display counters that might not "really" be needed.  
