@@ -15,7 +15,7 @@
 
 ## Description
      
-The `wc` rust program displays the number of bytes, characters, words, lines count avaliable in the file or files given to it from the standard input. 
+The `wc` rust program displays the number of bytes, characters, words, lines count available in the file or files given to it from the standard input. 
 	 
 If no `flag` is provided with no filename. The program drops into the standard input `stdin`. Then you can type in whatever you want, and when this is exited a temporary file `temp.txt` is created for the user. The user can then use `wc` to take several counts utilities that the `wc` provides.
 	 
