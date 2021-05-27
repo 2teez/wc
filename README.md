@@ -45,5 +45,7 @@ From `wc` utility on *nix OS.
      
 ##  Not Included
 The number of lines and other counts are displayed when the file or files are used on the `wc` program without any flag. So the flag `-l or line` is not included.
+
 The total sum of all the counts are also not included just to make this `wc` different.
-These are trival display counters that might not "really" be needed.  
+
+These are trival display counters that might not "really" be needed to stand on their own in the developer's opinion. 
