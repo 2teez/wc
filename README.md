@@ -46,8 +46,4 @@ From `wc` utility on *nix OS.
 2. The flags were "hand-picked" i.e manually parsed, instead of using crate like `clap` or `structopt` and the rest. This is because the flags to be used are very little. Joke: Why kill an ant with a hammer or why kill at all :)! This may change later without affecting the functionality of the program. 
      
 ##  Not Included
-The number of lines and other counts are displayed when the file or files are used on the `wc` program without any flag. So the flag `-l or line` is not included.
-
-The total sum of all the counts are also not included just to make this `wc` different.
-
-These are trivial display counters that might not "really" be needed to stand on their own in the programer's opinion. 
+The number of lines and other counters are displayed when the file or files are used on the `wc` program without any flag. So the flag `-l or line` is not included just to make this `wc` "feel" different.
