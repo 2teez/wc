@@ -6,11 +6,19 @@ use std::{
     io::{self, BufRead, BufReader, Read, Write},
 };
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, std::cmp::PartialEq)]
 pub enum FileOptions {
     Bytes,
     Chars,
     None,
+}
+
+#[derive(Debug, Default, Clone, Copy)]
+pub struct FileTotal {
+    total_of_lines: u32,
+    total_of_words: u32,
+    total_of_chars: usize,
+    total_of_bytes: usize,
 }
 
 #[derive(Debug, Default, Clone)]
@@ -65,7 +73,36 @@ impl fmt::Display for FileDescriptor {
     }
 }
 
+impl FileTotal {
+    fn calculate(&mut self, file: FileDescriptor) -> &mut Self {
+        self.total_of_bytes += file.byte_counts;
+        self.total_of_chars += file.number_of_chars;
+        self.total_of_words += file.number_of_words;
+        self.total_of_lines += file.number_of_lines;
+
+        self
+    }
+}
+
+impl fmt::Display for FileTotal {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "{:^}: {:>5},  {:^}: {:>5},  {:^}: {:>5}   {:>5}",
+            "No. of Lines",
+            self.total_of_lines,
+            "No. of Words",
+            self.total_of_words,
+            "Byte Count",
+            self.total_of_bytes,
+            "Total"
+        )
+    }
+}
+
 pub fn run(files: &[String], opt: FileOptions) {
+    let mut file_total = FileTotal::default();
+
     if files.is_empty() {
         let file = OpenOptions::new()
             .write(true)
@@ -84,11 +121,21 @@ pub fn run(files: &[String], opt: FileOptions) {
                 let file = File::open(file.to_string());
                 let mut file_desc = FileDescriptor::default();
 
-                file_option_used(
-                    file_desc
-                        .file_stat(file.unwrap(), &path.file_name().unwrap().to_string_lossy()),
-                    opt,
-                );
+                let result_file_desc = file_desc
+                    .file_stat(file.unwrap(), &path.file_name().unwrap().to_string_lossy());
+
+                file_option_used(result_file_desc.clone(), opt);
+                file_total.calculate(result_file_desc.clone());
+            }
+        }
+        if files.len() >= 2 {
+            println!("{}", "-".repeat(std::mem::size_of::<FileTotal>() * 4));
+            match opt {
+                FileOptions::Bytes => println!("\t{} Bytes Total", file_total.total_of_bytes),
+                FileOptions::Chars => {
+                    println!("\t{} Character(s) Total", file_total.total_of_chars)
+                }
+                FileOptions::None => println!("{}", file_total),
             }
         }
     }
