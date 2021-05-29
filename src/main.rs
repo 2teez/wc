@@ -1,7 +1,7 @@
-mod lib;
+mod others;
 
-use lib::{
-    run,
+use others::{
+    util::run,
     FileOptions::{Bytes, Chars, None},
 };
 
@@ -17,8 +17,8 @@ fn main() {
 
     if files.is_empty() {
         println!("You are now using the your Standard Input.");
-        // an empty slice is passed to satisfy the function run.
-        lib::run(&[], None);
+        // an empty vector is passed to satisfy the function run.
+        run(&[], None);
     } else if files.len() == 1
         && (files[0].clone().starts_with('-') || files[0].clone().starts_with("--"))
     {
@@ -27,9 +27,9 @@ fn main() {
     }
 
     match files[0].clone().as_str() {
-        "-b" | "--bytes" => run(&files, Bytes),
-        "-c" | "--chars" => run(&files, Chars),
+        "-b" | "--bytes" => run(&files[1..], Bytes),
+        "-c" | "--chars" => run(&files[1..], Chars),
         "-h" | "--help" => println!("Usage: wc <flags> <file or files>"),
-        _ => lib::run(&files, None),
+        _ => run(&files, None),
     }
 }
